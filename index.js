@@ -19,6 +19,12 @@ sequelize
 const articleRouter = require('./routes/article');
 app.use('/', articleRouter);
 app.use('/article', articleRouter);
+app.use('/articles', articleRouter);
+
+
+const authorRouter = require('./routes/author')
+app.use('/author', authorRouter);
+
 
 app.listen(3000, () =>{
     console.log("Server is running on http://localhost:3000")
