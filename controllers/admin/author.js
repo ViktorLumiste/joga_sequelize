@@ -1,7 +1,7 @@
 const Sequelize = require("sequelize");
 const sequelize = new Sequelize('mysql://root:qwerty@localhost:3306/joga_sequelize')
 
-const models = require('../models')
+const models = require('../../models')
 const getAllAuthors = (req,res) => {
     models.Author.findAll()
     .then(authors =>{
