@@ -1,6 +1,17 @@
 const express = require("express")
 const app = express()
 
+const path = require('path')
+const hbs = require('express-handlebars')
+app.set('views', path.join(__dirname, 'views/layouts'));
+app.set('view engine', 'hbs');
+app.engine('hbs', hbs.engine({
+    extname:'hbs',
+    defaultLayout: 'main',
+    layoutsDir: __dirname + '/views/layouts/',
+}))
+const bodyParser = require('body-parser')
+app.use(express.static('public'))
 app.use(express.json())
 app.use(express.urlencoded({extended:true}));
 
@@ -24,6 +35,9 @@ app.use('/articles', articleRouter);
 
 const authorRouter = require('./routes/author')
 app.use('/author', authorRouter);
+
+const adminRouter = require('./routes/admin')
+app.use('/admin/article', adminRouter)
 
 
 app.listen(3000, () =>{
